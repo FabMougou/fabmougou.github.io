@@ -33,7 +33,7 @@ function updateScreen(){
         image.src='assets/george'+georges+'.jpg';
     }
 
-    else if (clicks == 36){
+    else if (clicks == 35){
         html = `<div class="row center">
         <div class="col">
           <button id="yes-button" class="yes-no-buttons">YES</button>
