@@ -1,0 +1,26 @@
+body{
+    background-size:contain;
+    background-image: url('assets/candles0.jpg');
+}
+
+.george-img{
+    max-width: 100%;
+    max-height: 100vh;
+    margin: auto;
+}
+
+.center{
+    margin:auto;
+}
+
+.yes-no-buttons{
+
+    padding-left: 50px;
+    padding-right:50px;
+    font-size:35px;
+    font-weight: bold;
+    background-color: pink;
+    border-radius: 25px;
+}
+
+
