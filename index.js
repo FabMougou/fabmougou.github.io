@@ -36,7 +36,7 @@ function updateScreen(){
     else if (clicks == 35){
         html = `<div class="row center">
         <div class="col">
-          <button id="yes-button" class="yes-no-buttons">YES</button>
+          <button id="yes-button" class="yes-no-buttons" onclick="options()">YES</button>
         </div>
         <div class="col">
           <button class="yes-no-buttons" onclick="bigYes()">NO</button>
@@ -52,6 +52,18 @@ function updateScreen(){
 function bigYes(){
     size += 15;
     document.getElementById('yes-button').style.fontSize = size + 'px';
+
+}
+
+function options(){
+    html = `<div class="div options">
+    option a: Takeaway, friends, two canvi, and we swap every 10 mins (properly now cause im somewhat competent with painting)<br><br>
+    option b: woof woof cafe<br><br>
+    option c: zeeeeezeees or wagas<br><br>
+    option always: james's match at 6!!!
+    </div>`
+
+    document.getElementById('yes-no').innerHTML = html;
 
 }
 
