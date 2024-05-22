@@ -5,7 +5,7 @@ const videoElement = document.getElementById('input_video');
 
 function handsInFrame(results) {
     detections = results;
-    //console.log(detections);
+    console.log(detections);
 
     if (detections.multiHandLandmarks.length != 0){
         console.log("hand detected");
