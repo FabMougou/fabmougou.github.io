@@ -26,7 +26,7 @@ let sketch = function(p) {
 
     p.drawHands = function() {
         p.stroke(0);
-        p.strokeWeight(25);
+        p.strokeWeight(10);
 
         for (let i = 0; i < detections.multiHandLandmarks.length; i++){
             let landmarks = detections.multiHandLandmarks[i];
