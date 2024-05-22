@@ -8,7 +8,7 @@ let sketch = function(p) {
     };
 
     p.draw = function() {
-        console.log("rnnnn")
+        console.log("constanat draw function")
         p.clear();
         p.translate(-p.width/2, -p.height/2);
 
@@ -21,7 +21,6 @@ let sketch = function(p) {
     };
 
     p.drawHands = function() {
-        console.log("rannnn")
         p.stroke(0);
         p.strokeWeight(10);
 
