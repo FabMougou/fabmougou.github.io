@@ -5,11 +5,15 @@ let sketch = function(p) {
     p.setup = function() {
         canvas = p.createCanvas(640, 480, p.WEBGL);
         canvas.id('canvas')
+
+        p.stroke(0);
+        p.strokeWeight(50);
+        p.point(100, 100, 50);
     };
 
     p.draw = function() {
-        console.log("constanat draw function")
-        p.clear();
+        console.log("constant draw function")
+        //p.clear();
         p.translate(-p.width/2, -p.height/2);
 
 
