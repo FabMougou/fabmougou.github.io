@@ -26,7 +26,7 @@ let sketch = function(p) {
 
     p.drawHands = function() {
         p.stroke(0);
-        p.strokeWeight(10);
+        p.strokeWeight(25);
 
         for (let i = 0; i < detections.multiHandLandmarks.length; i++){
             let landmarks = detections.multiHandLandmarks[i];
@@ -35,6 +35,7 @@ let sketch = function(p) {
                 let y = detections.multiHandLandmarks[i][j].y * p.height;
                 let z = detections.multiHandLandmarks[i][j].z;
 
+                console.log(x,y ,z);
                 p.point(x, y, z);
             };
         };
