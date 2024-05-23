@@ -19,6 +19,7 @@ let sketch = function(p) {
     p.draw = function() {
         console.log("constant draw function")
         p.translate(-p.width/2, -p.height/2);
+        p.clear();
 
 
         if (detections != undefined){
