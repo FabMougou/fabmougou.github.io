@@ -4,6 +4,8 @@ const videoElement = document.getElementById('input_video');
 
 
 function handsInFrame(results) {
+
+    //PROBLEM IS THAT NO LANDMARKS ARE BEING PICKED UP BY THE FEED ON MOBILE
     detections = results;
     console.log(detections.multiHandLandmarks);
 
@@ -33,3 +35,4 @@ const camera = new Camera(videoElement, {
     height: 480
 });
 camera.start();
+
