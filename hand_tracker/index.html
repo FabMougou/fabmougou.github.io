@@ -19,7 +19,11 @@
 
 
   <body>
-      <video id="input_video"></video>
+    <div id="container">
+      <button id="camera-toggle" onclick="toggleCamera()">Camera</button>
+      <button id="clear-button" onclick="clearSketch()">Clear</button>
+      <video id="input-video"></video>
+    </div>
 
     <script src="detection.js"></script>
     <script src="sketch.js"></script>

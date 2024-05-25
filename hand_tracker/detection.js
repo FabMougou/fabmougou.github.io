@@ -1,16 +1,16 @@
 let detections = {};
+let toggle = false;
 
-const videoElement = document.getElementById('input_video');
+const videoElement = document.getElementById('input-video');
 
 
 function handsInFrame(results) {
 
     //PROBLEM IS THAT NO LANDMARKS ARE BEING PICKED UP BY THE FEED ON MOBILE
     detections = results;
-    console.log(detections.multiHandLandmarks);
 
     if (detections.multiHandLandmarks.length != 0){
-        console.log("hand detected");
+
     }
 };
 
@@ -32,7 +32,18 @@ const camera = new Camera(videoElement, {
         await hands.send({image: videoElement});
     },
     width: 640,
-    height: 480
+    height: 360
 });
 camera.start();
+
+function toggleCamera() {
+    if (!toggle){
+        videoElement.style.display = 'block';
+        toggle = true;
+    }
+    else {
+        videoElement.style.display = 'none';
+        toggle = false;
+    };
+};
 

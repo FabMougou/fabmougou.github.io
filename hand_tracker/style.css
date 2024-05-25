@@ -1,13 +1,40 @@
-video {
-    position: absolute;
-    z-index: 0;
-    -webkit-transform: scaleX(-1);
-    transform: scaleX(-1);
-  }
+#input-video {
+  position: absolute;
+  z-index: 0;
+  -webkit-transform: scaleX(-1) scale(1.6);
+  transform: scaleX(-1) scale(1.6);
+}
 
 canvas {
-    position:absolute;
-    z-index:1;
-    -webkit-transform: scaleX(-1);
-    transform: scaleX(-1);
-  }
+  position:absolute;
+  z-index:1;
+  -webkit-transform: scaleX(-1) scale(1.6);
+  transform: scaleX(-1) scale(1.6);
+  border: solid black 1px;
+}
+  
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 97vh; /* This makes the container take up the full height of the viewport */
+  border: solid black 1px;
+  overflow: hidden;
+  background-color: grey;
+}
+
+#camera-toggle{
+  left:12px;
+  z-index: 100;
+  top: 15px;
+  position:absolute;
+  width:75px;
+}
+
+#clear-button{
+  left:12px;
+  z-index: 100;
+  top: 45px;
+  position:absolute;
+  width:75px;
+}
