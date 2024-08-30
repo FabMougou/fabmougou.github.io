@@ -9,6 +9,7 @@ let lining;
 let moving;
 let rack = [];
 let nodes = [];
+let selectedNodes = [];
 let bg;
 let rackX = 100;
 let rackY = 125;
@@ -32,9 +33,6 @@ function setup() {
     for (let node of nodes) {
         node.show();
     }
-
-
-
 }
 
 function draw() {
@@ -59,14 +57,13 @@ function set_nearest() {
 function mousePressed() {
     set_nearest();
     if (!nearest) return;
-
     
     if (is_mouse_in_shape(nearest.x, nearest.y, nearest.width, nearest.height)) {
+
         nearest.onclick?.(); 
         moving = nearest;
         offset = {x: nearest.x - mouseX,
                   y: nearest.y - mouseY};
-
 
     }
 
@@ -215,7 +212,6 @@ function is_mouse_in_shape(shapeX, shapeY, shapeWidth, shapeHeight){
 }
 
 function addNode(node){
-
     if (rack.length > 0){
         rackX = (rack[rack.length-1].x) + (rack[rack.length-1].width / 2) + 100;
  
@@ -232,6 +228,25 @@ function addNode(node){
     nodes.push(node);
 }
 
+document.addEventListener('keydown', function(event) {
+    set_nearest();
+    if (!nearest) return;
+
+    if (event.key == 'Control'){
+        if (is_mouse_in_shape(nearest.x, nearest.y, nearest.width, nearest.height)){
+            selectedNodes.includes(nearest) ? selectedNodes.splice(selectedNodes.indexOf(nearest), 1) : selectedNodes.push(nearest);
+            console.log(selectedNodes);
+        }
+    }
+
+    if (event.key == 'Backspace'){
+        if (is_mouse_in_shape(nearest.x, nearest.y, nearest.width, nearest.height)){
+            nodes.splice(nodes.indexOf(nearest), 1);
+            image(bg, 0, 0);
+            console.log('Deleted node:', nearest)
+        }
+    }
+});
 
 function createBG(){
     let bg = createGraphics(7500, 7500);
@@ -289,7 +304,3 @@ function changeSize(){
     }
 
 }
-
-
-
-
