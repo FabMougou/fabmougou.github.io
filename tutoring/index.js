@@ -23,7 +23,7 @@ function displayInfo(){
 
     for (let student of info.students) {
         let studentHtml = `
-        <div class="scrolling-container m-4">
+        <div class="scrolling-container">
             <span class="student">${student.name}</span>
             <div>
                 <span class="hours-tally">Total Hours: ${student.hours_total}</span>
