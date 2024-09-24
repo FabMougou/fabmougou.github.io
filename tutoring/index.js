@@ -4,7 +4,7 @@ function Login() {
     const code = document.getElementById('codeInput').value;
     const errorMsg = document.getElementById('errorMsg');
     console.log("Submitted code:", code); // Perform any action with the code
-    if (code === '1234') {
+    if (code === '3596') {
         displayInfo();
         document.getElementById('login-container').style.display = 'none';
     } else {
@@ -12,9 +12,6 @@ function Login() {
         errorMsg.style.display = "block";
     }
 }
-
-
-
 
 function displayInfo(){
     const currentDate = new Date();
