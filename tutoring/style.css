@@ -1,0 +1,78 @@
+.scrolling-container {
+    /* background-color: red; */
+    margin: 0 auto;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.session-box {
+    width: 250px;
+    height: 250px;
+    background-color: #3b5998;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    color: white;
+    text-align: center;
+
+    margin: 10px;
+    padding: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+  
+.session-box:hover {
+    background-color: #3498db;
+    transform: translateY(-10px); /* Moves the box up slightly on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.date {
+    display: inline-block;
+    background-color: #f0f8ff; /* Light background color */
+    color: #2c3e50; /* Darker text color */
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    font-size: 25px;
+    padding: 10px 15px; /* Padding around the text */
+    margin:5px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.topic {
+    display: inline-block;
+    color: rgb(230, 230, 230); /* Darker text color */
+    font-family: 'Arial', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 8px; /* Rounded corners */
+}
+
+.hours {
+    display: inline-block;
+    color: white; /* Darker text color */
+    font-family: 'Arial', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 20px 0px 10px 0px;
+    border-radius: 8px; /* Rounded corners */
+}
+
+.student {
+  color: #2c3e50; /* Darker text color */
+  font-family: 'Montserrat', sans-serif; /* Moderately thick blocky font */
+  font-weight: bold;
+  font-size: 45px; /* Increased font size */
+  margin-left: 15px;
+}
+
+.hours-tally {
+    color: #53687d; /* Darker text color */
+    font-family: 'Montserrat', sans-serif; /* Moderately thick blocky font */
+    font-weight: bold;
+    font-size: 20px; /* Increased font size */
+    margin-left: 15px;
+}
+
+
