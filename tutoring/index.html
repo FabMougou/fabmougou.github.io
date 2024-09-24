@@ -10,7 +10,13 @@
   </head>
 
   <body>
-    
+    <div class="login-box" id="login-container">
+        <div class="mb-3">
+            <input type="text" class="form-control" id="codeInput" placeholder="Enter your code">
+        </div>
+        <button class="btn btn-primary w-100" id="loginButton">Login</button>
+        <div id="errorMsg" class="mt-2" style="display: none; color: red;"></div>
+    </div>
     <div id="main"></div>
 
     <script type="module" src="index.js"></script>
