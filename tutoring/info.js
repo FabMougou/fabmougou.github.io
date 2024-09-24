@@ -2,35 +2,36 @@ export default {
     students: [
         {
             "name": "Lucas",
-            "hours_left": 5,
-            "hours_total": 10,
+            "hours_left": 2,
+            "hours_total": 4.5,
             "sessions": [
                 {
-                    "date": "22.09.24",
+                    "date": "21.09.24",
                     "hours": 1,
-                    "done": true,
                     "time": "4-5pm"
                 },
                 {
-                    "date": "2021-09-02",
-                    "hours": 1,
-                    "done": true
+                    "date": "24.09.24",
+                    "hours": 1.5,
+                    "time": "7-8:30pm"
                 },
                 {
-                    "date": "2021-09-03",
+                    "date": "26.09.24",
                     "hours": 1,
-                    "done": true
+                    "time": "7-8pm"
                 },
+            ]
+        },
+        {
+            "name": "Ethan",
+            "hours_left": 1,
+            "hours_total": 1,
+            "sessions": [
                 {
-                    "date": "2021-09-04",
+                    "date": "26.09.24",
                     "hours": 1,
-                    "done": true
+                    "time": "5-6pm"
                 },
-                {
-                    "date": "2021-09-05",
-                    "hours": 1,
-                    "done": true
-                }
             ]
         },   
     ]
