@@ -20,6 +20,16 @@ export default {
                     "hours": 1,
                     "time": "7-8pm"
                 },
+                {
+                    "date": "01.10.24",
+                    "hours": 1,
+                    "time": "7-8pm"
+                },
+                {
+                    "date": "03.10.24",
+                    "hours": 1,
+                    "time": "7-8pm"
+                },
             ]
         },
         {
