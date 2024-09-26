@@ -119,4 +119,19 @@
     color: red;
 }
 
+.admin-container {
+    text-align: center;
+    width: 125px;
+    background-color: rgb(245, 89, 89); /* Darker text color */
+    font-family: 'Montserrat', sans-serif; /* Moderately thick blocky font */
+
+    color: white; /* Darker text color */
+    font-size: 12px;
+    padding: 5px;
+    margin: auto;
+    margin-top: 8px;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15);
+}
+
 

@@ -1,11 +1,18 @@
 import info from './info.js';
+const loginCodes = ['3596', 'DurAdmin'];
+var admin = false;
 
 function Login() {
     const code = document.getElementById('codeInput').value;
     const errorMsg = document.getElementById('errorMsg');
     console.log("Submitted code:", code); // Perform any action with the code
-    if (code === '3596') {
-        displayInfo();
+
+    if (code == 'DurAdmin') {
+        admin = true;
+    }
+
+    if (loginCodes.includes(code)) {
+        displayInfo(code);
         document.getElementById('login-container').style.display = 'none';
     } else {
         errorMsg.innerText = "Please enter a valid code.";
@@ -13,12 +20,25 @@ function Login() {
     }
 }
 
-function displayInfo(){
+function displayInfo(code){
     const currentDate = new Date();
     const container = document.getElementById('main');
     let html = '';
 
+    if (admin) {
+        html += `
+        <div class="admin-container">
+            Logged in as admin
+        </div>
+        `;
+    }
+
     for (let student of info.students) {
+        if (student.code !== code && !admin) {
+            console.log('AKIPPED')
+            continue;
+        }
+
         let studentHtml = `
         <div class="scrolling-container">
             <span class="student">${student.name}</span>
@@ -47,8 +67,6 @@ function displayInfo(){
         studentHtml += `</div></div>`;
         html += studentHtml;
     }
-
-
     container.innerHTML = html;
 }
 

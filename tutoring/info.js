@@ -1,8 +1,11 @@
 export default {
+    lastSessionId: 1,
     students: [
         {
             "name": "Lucas",
-            "hours_left": 2,
+            "studentID": "0001",
+            "code": "3596",
+            "hours_left": 1,
             "hours_total": 4.5,
             "sessions": [
                 {
@@ -18,15 +21,10 @@ export default {
                 {
                     "date": "26.09.24",
                     "hours": 1,
-                    "time": "7-8pm"
+                    "time": "5-6pm"
                 },
                 {
                     "date": "01.10.24",
-                    "hours": 1,
-                    "time": "7-8pm"
-                },
-                {
-                    "date": "03.10.24",
                     "hours": 1,
                     "time": "7-8pm"
                 },
@@ -34,15 +32,17 @@ export default {
         },
         {
             "name": "Ethan",
+            "studentID": "0002",
+            "code": "3596",
             "hours_left": 1,
             "hours_total": 1,
             "sessions": [
                 {
                     "date": "26.09.24",
                     "hours": 1,
-                    "time": "5-6pm"
+                    "time": "7-8pm"
                 },
             ]
-        },   
+        },
     ]
 }
