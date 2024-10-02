@@ -118,5 +118,26 @@ export default {
                 },
             ]
         },
+        {
+            "name": "Alice Doe",
+            "studentID": "0004",
+            "code": "demo",
+            "hours_left": 1,
+            "hours_total": 2,
+            "sessions": [
+                {
+                    "date": "02.09.24",
+                    "hours": 1,
+                    "time": "4-6pm",
+                    "subject": "English"
+                },
+                {
+                    "date": "15.12.24",
+                    "hours": 1,
+                    "time": "7-8pm",
+                    "subject": "English"
+                },
+            ]
+        },
     ]
 }
