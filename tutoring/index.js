@@ -1,5 +1,5 @@
 import info from './info.js';
-const loginCodes = ['3596', 'DurAdmin'];
+const loginCodes = ['3596', 'DurAdmin', 'demo'];
 var admin = false;
 
 function Login() {
@@ -59,7 +59,7 @@ function displayInfo(code){
                 <span class="date">${session.date}</span><br>
                 <span class="time">${session.time}</span><br>
                 <span class="hours">Hours: ${session.hours}</span><br>
-                <span class="topic">Computer Science</span>
+                <span class="topic">${session.subject}</span>
             </div>
             `;
             studentHtml += sessionHtml;
