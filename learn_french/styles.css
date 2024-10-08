@@ -1,0 +1,47 @@
+.center-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px; /* Space between the rows */
+}
+
+.flag {
+    width: 100px; /* Default width for viewports larger than 600px */
+    height: auto;
+}
+
+.textbox {
+    margin-left:15px;
+    width: 300px; /* Set a fixed width for the textbox */
+    font-size: 30px;
+    transition: 0.3s;
+}
+
+.tick-icon {
+    pointer-events: none; /* Prevent the icon from capturing mouse events */
+    color: green; /* Change icon color */
+}
+
+#skip-button {
+    margin-top:20px;
+    font-size: 20px;
+}
+
+@media (max-width: 600px) {
+    .flag {
+        width: 75px; /* Width for viewports smaller than 600px */
+    }
+
+    .textbox {
+        width: 250px; /* Set a fixed width for the textbox */
+        font-size: 20px;
+    }
+}
