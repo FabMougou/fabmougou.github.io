@@ -3,31 +3,31 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Full viewport height */
+    height: 100vh;
 }
 
 .row {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px; /* Space between the rows */
+    margin-bottom: 20px; 
 }
 
 .flag {
-    width: 100px; /* Default width for viewports larger than 600px */
+    width: 100px; 
     height: auto;
 }
 
 .textbox {
     margin-left:15px;
-    width: 300px; /* Set a fixed width for the textbox */
+    width: 300px; 
     font-size: 30px;
     transition: 0.3s;
 }
 
 .tick-icon {
-    pointer-events: none; /* Prevent the icon from capturing mouse events */
-    color: green; /* Change icon color */
+    pointer-events: none; 
+    color: green; 
 }
 
 #skip-button {
@@ -37,11 +37,11 @@
 
 @media (max-width: 600px) {
     .flag {
-        width: 75px; /* Width for viewports smaller than 600px */
+        width: 75px; 
     }
 
     .textbox {
-        width: 250px; /* Set a fixed width for the textbox */
+        width: 250px;
         font-size: 20px;
     }
 }
