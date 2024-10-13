@@ -5,8 +5,8 @@ export default {
             "name": "Lucas",
             "studentID": "0001",
             "code": "3596",
-            "hours_left": 4,
-            "hours_total": 5.5,
+            "hours_left": 1,
+            "hours_total": 9.5,
             "sessions": [
                 {
                     "date": "21.09.24",
