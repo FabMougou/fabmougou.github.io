@@ -1,21 +1,24 @@
 let words = [];
-let frenchBox = document.getElementById('french-word');
+let otherBox = document.getElementById('other-word');
 let englishBox = document.getElementById('english-word');
-let frenchWord = '';
+let currentLanguage = 'french';
+let otherWord = '';
 let englishWord = '';
 
-fetch('common_french_word.csv') 
-.then(response => response.text())
-.then(data => {
-    Papa.parse(data, {
-        header: false,
-        complete: function(results) {
-            words = results.data;
-            getRandomWord();
-        }
-    });
-})
-.catch(error => console.error('Error loading CSV:', error));
+function loadWords() {
+    fetch(`common_${currentLanguage}_words.csv`) 
+    .then(response => response.text())
+    .then(data => {
+        Papa.parse(data, {
+            header: false,
+            complete: function(results) {
+                words = results.data;
+                getRandomWord();
+            }
+        });
+    })
+    .catch(error => console.error('Error loading CSV:', error));
+}
 
 function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
@@ -24,8 +27,9 @@ function delay(time) {
 
 function getRandomWord() {
     let randomIndex = Math.floor(Math.random() * words.length);
-    frenchWord = words[randomIndex][1];
-    frenchBox.value = frenchWord;
+    otherWord = words[randomIndex][1];
+    console.log(words[randomIndex][0]);
+    otherBox.value = otherWord;
     englishWord = words[randomIndex][2];
     englishBox.value = '';
 }
@@ -50,6 +54,18 @@ async function skipWord() {
     englishBox.style.backgroundColor = 'white';
 }
 
+function changeLanguage(language) {
+    document.getElementById(`${currentLanguage}-selector`).style.display = 'block';
+    currentLanguage = language;
+
+    document.getElementById(`${language}-selector`).style.display = 'none';
+    document.getElementById('current-flag').src = `images/${language}_flag.svg`;
+    document.getElementById('current-language').innerText = language.charAt(0).toUpperCase() + language.slice(1);
+    document.getElementById('other-flag').src = `images/${language}_flag.svg`;
+    loadWords();
+}
+
+changeLanguage('french');
 englishBox.addEventListener('input', checkEnglishWord);
 
 

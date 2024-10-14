@@ -25,14 +25,40 @@
     transition: 0.3s;
 }
 
-.tick-icon {
-    pointer-events: none; 
-    color: green; 
+.btn-shadow {
+    background-color: rgba(234, 236, 239);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    font-size:20px;
+    transition:0.3s;
+    border:0px;
+}
+.btn-shadow:hover {
+    background-color: rgba(255, 255, 255);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 #skip-button {
     margin-top:20px;
     font-size: 20px;
+}
+
+.selector {
+    margin-top:30px;
+    margin-left:30px;
+    font-size: 20px;
+}
+
+.small-flag{
+    margin-right:10px;
+    width: 30px;
+    height: auto;
+}
+
+.very-small-flag{
+    margin-bottom:5px;
+    margin-right:5px;
+    width: 20px;
+    height: auto;
 }
 
 @media (max-width: 600px) {
