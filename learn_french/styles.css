@@ -5,7 +5,9 @@
     align-items: center;
     height: 100vh;
 }
-
+.font {
+    font-size: 18px;
+}
 .row {
     display: flex;
     align-items: center;
@@ -25,16 +27,25 @@
     transition: 0.3s;
 }
 
-.btn-shadow {
-    background-color: rgba(234, 236, 239);
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+.blue-button {
+    text-align: left;
+    height: 50px;
+    width:150px;
+    border-radius: 12px;
+    background-color: #053a5f;
+    color: white;   
     font-size:20px;
     transition:0.3s;
     border:0px;
 }
-.btn-shadow:hover {
-    background-color: rgba(255, 255, 255);
+.blue-button:hover {
+    color:white;
+    background-color: #3fafff;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.shadowed {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 #skip-button {
@@ -42,8 +53,7 @@
     font-size: 20px;
 }
 
-.selector {
-    margin-top:30px;
+.language-selector {
     margin-left:30px;
     font-size: 20px;
 }
@@ -59,6 +69,29 @@
     margin-right:5px;
     width: 20px;
     height: auto;
+}
+
+.difficulty-selector {
+    width:50%;
+    margin:auto;
+    margin-right: 30px;
+}
+
+#difficulty-amount {
+    font-size:20px;
+    font-weight: bold;
+    color: rgb(113, 0, 142);
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    background: #053a5f;
+    height: 0.5rem;
+}
+  
+  /******** Firefox ********/
+input[type="range"]::-moz-range-track {
+    background: #053a5f;
+    height: 0.5rem;
 }
 
 @media (max-width: 600px) {

@@ -9,36 +9,46 @@
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-
-    <div class="dropdown selector">
-        <button class="btn btn-shadow dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-            <img id="current-flag" class="small-flag" src="images/french_flag.svg" alt="">
-            <span id="current-language">French</span>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li>
-                <a id="french-selector" class="dropdown-item" href="#" onclick="changeLanguage('french')"><img class="very-small-flag" src="images/french_flag.svg" alt="">French</a>
-            </li>
-            <li id="irish-selector">
-                <a class="dropdown-item" href="#" onclick="changeLanguage('irish')"><img class="very-small-flag" src="images/irish_flag.svg" alt="">Irish</a>
-            </li>
-        </ul>
+<div class="row my-3">
+    <div class="col">
+        <div class="dropdown language-selector">
+            <button class="blue-button shadowed dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <img id="current-flag" class="small-flag" src="images/french_flag.svg" alt="">
+                <span id="current-language">French</span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li>
+                    <a id="french-selector" class="dropdown-item" href="#" onclick="changeLanguage('french')"><img class="very-small-flag" src="images/french_flag.svg" alt="">French</a>
+                </li>
+                <li id="irish-selector">
+                    <a class="dropdown-item" href="#" onclick="changeLanguage('irish')"><img class="very-small-flag" src="images/irish_flag.svg" alt="">Irish</a>
+                </li>
+            </ul>
+        </div>
     </div>
-
-<div class="container center-container">
-    <!-- First Row -->
-    <div class="row">
-        <img id="other-flag" class="flag" src="images/french_flag.svg" alt="">
-        <input id="other-word" type="text" class="form-control textbox" placeholder="..." disabled>
+    <div class="col">
+        <div class="difficulty-selector">
+            <input type="range" class="form-range" id="difficulty-slider" min="100" max="1000" value="500" step="100" onchange="changeDifficulty()">
+            <label for="difficulty-slider" id="difficulty-label" class="form-label font"><span id="difficulty-amount">500</span> Most Common Words</label>
+        </div>
     </div>
+</div>
+<div class="row">
+    <div class="container center-container">
+        <!-- First Row -->
+        <div class="row">
+            <img id="other-flag" class="flag" src="images/french_flag.svg" alt="">
+            <input id="other-word" type="text" class="form-control textbox" placeholder="..." disabled>
+        </div>
 
-    <!-- Second Row -->
-    <div class="row">
-        <img class="flag" src="images/british_flag.svg" alt="">
-        <input id="english-word" type="text" class="form-control textbox">
-    </div>
-    <div class="row" >
-        <button id="skip-button" class="btn btn-danger" onclick="skipWord()">Skip</button>
+        <!-- Second Row -->
+        <div class="row">
+            <img class="flag" src="images/british_flag.svg" alt="">
+            <input id="english-word" type="text" class="form-control textbox">
+        </div>
+        <div class="row" >
+            <button id="skip-button" class="btn btn-danger" onclick="skipWord()">Skip</button>
+        </div>
     </div>
 </div>
 
