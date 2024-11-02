@@ -2,11 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="icon" href="french_flag.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="french_flag.svg">
     <title>Learn Languages</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json" />
 </head>
 <body>
 <div class="row my-3">
@@ -28,7 +31,7 @@
     </div>
     <div class="col">
         <div class="difficulty-selector">
-            <input type="range" class="form-range" id="difficulty-slider" min="100" max="1000" value="500" step="100" onchange="changeDifficulty()">
+            <input type="range" class="form-range" id="difficulty-slider" min="100" max="1000" value="500" step="100" oninput="changeDifficulty()">
             <label for="difficulty-slider" id="difficulty-label" class="form-label font"><span id="difficulty-amount">500</span> Most Common Words</label>
         </div>
     </div>
