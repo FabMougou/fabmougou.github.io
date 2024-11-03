@@ -90,7 +90,7 @@ function checkKnownWord() {
             knownBox.style.backgroundColor = 'white';
             knownBox.disabled = false;
             getRandomWord();
-        }, 1000);
+        }, 750);
     }
 }
 
@@ -102,7 +102,7 @@ function skipWord() {
         knownBox.style.backgroundColor = 'white';
         knownBox.disabled = false;
         getRandomWord();
-    }, 2000);
+    }, 1000);
 }
 
 knownBox.addEventListener('input', checkKnownWord);
