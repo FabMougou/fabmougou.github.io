@@ -28,7 +28,9 @@ initialize();
 function timer(){
     var sec = 90;
     var timer = setInterval(function(){
-        document.getElementById('timer').innerHTML= sec > 60 ? `${Math.floor(sec / 60)}:`+(sec-60) : '00:'+sec;
+        var minutes = Math.floor(sec / 60).toString().padStart(2, '0');
+        var seconds = (sec % 60).toString().padStart(2, '0');
+        document.getElementById('timer').innerHTML= `${minutes}:${seconds}`;
         sec--;
         if (sec < 0) {
             finalScore.innerText = correct;

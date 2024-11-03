@@ -38,7 +38,6 @@ async function loadWords() {
                 header: false,
                 complete: function(results) {
                     learningWordList = results.data;
-                    // (learningWordList);
                 }
             });
         })
