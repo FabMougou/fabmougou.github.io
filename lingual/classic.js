@@ -6,8 +6,6 @@ let scoreSpan = document.getElementById('score');
 let wordsLeftSpan = document.getElementById('words-left');
 let classicModal = document.getElementById('classic-modal');
 let finalScore = document.getElementById('final-score');
-console.log('This is the known language:', knownLanguage);
-console.log('This is the learning language:', learningLanguage);
 let learningWord;
 let knownWord;
 let knownWordList = [];
@@ -48,7 +46,6 @@ async function loadWords() {
                 header: false,
                 complete: function(results) {
                     knownWordList = results.data;
-                    // console.log(knownWordList);
                 }
             });
         })
@@ -61,7 +58,6 @@ async function loadWords() {
                 header: false,
                 complete: function(results) {
                     learningWordList = results.data;
-                    // console.log(learningWordList);
                 }
             });
         })
@@ -87,7 +83,6 @@ function checkKnownWord() {
     if (userAnswer === knownWord) {
         wordsLeftSpan.innerText = `${combinedWordList.length - count} words left`;
         correct++;
-        console.log('correct', correct);
         scoreSpan.innerText = `${correct}/${combinedWordList.length}`;
         knownBox.style.backgroundColor = 'lightgreen';
         knownBox.disabled = true;

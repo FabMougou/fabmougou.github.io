@@ -24,8 +24,6 @@ function changeFlag() {
 
 function setDifficulty() {
     localStorage.setItem('difficulty', difficultySlider.value);
-    console.log('Difficulty set to', difficultySlider.value);
-    console.log('this hereererere, ', localStorage.getItem('difficulty'));
     difficultyLabel.innerText = difficultySlider.value;
 
     const green = [0, 200, 0]; // RGB values for less bright green

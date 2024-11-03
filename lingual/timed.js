@@ -7,8 +7,6 @@ let timedModal = document.getElementById('timed-modal');
 let finalScore = document.getElementById('final-score');
 
 
-console.log('This is the known language:', knownLanguage);
-console.log('This is the learning language:', learningLanguage);
 let learningWord;
 let knownWord;
 let knownWordList = [];
@@ -49,7 +47,6 @@ async function loadWords() {
                 header: false,
                 complete: function(results) {
                     knownWordList = results.data;
-                    // console.log(knownWordList);
                 }
             });
         })
@@ -62,7 +59,6 @@ async function loadWords() {
                 header: false,
                 complete: function(results) {
                     learningWordList = results.data;
-                    // console.log(learningWordList);
                 }
             });
         })
@@ -73,7 +69,6 @@ async function loadWords() {
 function getRandomWord() {
     count++;
     let randomIndex = Math.floor(Math.random() * localStorage.getItem('difficulty'));
-    console.log('Random index:', randomIndex);
     learningWord = learningWordList[randomIndex][1];
     learningBox.value = learningWord;
     knownWord = knownWordList[randomIndex][1];
@@ -81,10 +76,8 @@ function getRandomWord() {
 }
 
 function checkKnownWord() {
-    console.log('runniing');
     let userAnswer = knownBox.value.toLowerCase();
     if (userAnswer == knownWord) {
-        console.log('Correct!');
         correct++;
         scoreSpan.innerText = correct;
         knownBox.style.backgroundColor = 'lightgreen';

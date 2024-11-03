@@ -2,8 +2,6 @@ let knownBox = document.getElementById('known-box');
 let learningBox = document.getElementById('learning-box');
 let knownLanguage = localStorage.getItem('knownLanguage');
 let learningLanguage = localStorage.getItem('learningLanguage');
-console.log('This is the known language:', knownLanguage);
-console.log('This is the learning language:', learningLanguage);
 let learningWord;
 let knownWord;
 let knownWordList = [];
@@ -28,7 +26,6 @@ async function loadWords() {
                 header: false,
                 complete: function(results) {
                     knownWordList = results.data;
-                    // console.log(knownWordList);
                 }
             });
         })
@@ -41,7 +38,7 @@ async function loadWords() {
                 header: false,
                 complete: function(results) {
                     learningWordList = results.data;
-                    // console.log(learningWordList);
+                    // (learningWordList);
                 }
             });
         })
@@ -51,7 +48,6 @@ async function loadWords() {
 
 function getRandomWord() {
     let randomIndex = Math.floor(Math.random() * localStorage.getItem('difficulty'));
-    console.log('Random index:', randomIndex);
     learningWord = learningWordList[randomIndex][1];
     learningBox.value = learningWord;
     knownWord = knownWordList[randomIndex][1];
