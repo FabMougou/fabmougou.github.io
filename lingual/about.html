@@ -20,8 +20,8 @@
     <div id="content">
         <div class="row">
             <div class="col m-3">
-                <button class="icon-button" title="Settings" onclick="window.location.href='settings.html'">
-                    <img class="icon" src="assets/settings_icon.svg" alt="Settings">
+                <button class="icon-button" title="Back" onclick="window.location.href='index.html'">
+                    <img class="icon" src="assets/back_icon.svg" alt="Back">
                 </button>
             </div>
         </div>
@@ -34,27 +34,28 @@
         </div>
 
         <div class="row text-center my-5">
-            <div class="col">
-                <button class="menu-button" onclick="window.location.href='classic.html'">classic</button>
-            </div>
-        </div>
-
-        <div class="row text-center my-5">
-            <div class="col">
-                <button class="menu-button" onclick="window.location.href='timed.html'">timed</button>
-            </div>
-        </div>
-
-        <div class="row text-center my-5">
-            <div class="col">
-                <button class="menu-button" onclick="window.location.href='endless.html'">endless</button>
-            </div>
-        </div>
-
-        <div class="row text-center my-5">
-            <div class="col">
-                <button class="menu-button" onclick="window.location.href='about.html'">about</button>
-            </div>
+            <dialog id="about-modal" class="finish-modal text-center">
+                <div class="modal-content">
+                    <div class="row my-3">
+                        <h3>Learn the most common words in your prospective language</h2>
+                    </div>
+        
+                    <div class="row">
+                        <p>Select a language and get learning straight away with a selection of simple, fast minigames</p>
+                        <p>As you feel your confidence grow, increase the difficulty to face more and more words that get less and less common</p>
+                    </div>
+            
+                    <div class="row my-5">
+                        <div class="col m-2">
+                            <button class="menu-button" onclick="window.location.href='index.html'">back</button>
+                        </div>
+            
+                        <div class="col m-2">
+                            <button class="menu-button" onclick="window.location.href='classic.html'">retry</button>
+                        </div>
+                    </div>
+                </div>
+            </dialog>
         </div>
     </div>
 

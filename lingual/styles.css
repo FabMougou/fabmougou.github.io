@@ -8,7 +8,7 @@ body {
     background-color: #DBD7D2;
 }
 
-h1, h2 {
+h1, h2, h3 {
     color: #08415C;
 }
 
@@ -241,6 +241,13 @@ input[type="range"]::-webkit-slider-thumb {
     height: 100%;
     width: 100%;
 }
+
+#about-modal {
+    display: block;
+    height: auto;
+    width: 75%;
+}
+
 
 
 @media (max-width: 600px) {
