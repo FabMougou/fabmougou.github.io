@@ -22,7 +22,7 @@
 .menu-button {
     width:300px;
     height: 60px;
-    font-size: 40px;
+    font-size: 30px;
     color: white;
     background-color: #CC2936;
     border:0px;
@@ -179,5 +179,24 @@ input[type="range"]::-webkit-slider-thumb {
             0 -4px 12px #FF3, /* Second layer - core of flame (yellow) */
             0 -8px 16px #F90, /* Middle layer - body of flame (orange) */
             0 -12px 24px #C33; /* Outermost layer - edges of flame (red) */
+    }
+}
+
+
+
+@media (max-width: 600px) {
+    .flag {
+        width: 75px; 
+    }
+
+    .textbox {
+        width: 250px;
+        font-size: 20px;
+    }
+
+    .menu-button {
+        width:250px;
+        height: 50px;
+        font-size: 25px;
     }
 }
