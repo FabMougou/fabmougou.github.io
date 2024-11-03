@@ -204,3 +204,15 @@ input[type="range"]::-webkit-slider-thumb {
         margin-top: 75px;
     }
 }
+
+@media (max-width: 991px) {
+    .menu-button:hover {
+        transform: scale(1);
+        background-color: #CC2936;
+    }
+
+    .menu-button:active {
+        transform: scale(1.07);
+        background-color: #f9747f;
+    }
+}
