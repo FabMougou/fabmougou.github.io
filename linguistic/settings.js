@@ -4,6 +4,7 @@ let difficultySlider = document.getElementById('difficulty-slider');
 let difficultyLabel = document.getElementById('difficulty-label');
 
 function initialise() {
+    changeFlag();
     let difficulty = localStorage.getItem('difficulty');
     if (difficulty == null) {
         setDifficulty();
@@ -53,16 +54,4 @@ function setDifficulty() {
         difficultyLabel.style.animation = 'none';
     }
 }
-
-function setKnownLanguage(language) {
-    localStorage.setItem('knownLanguage', language);
-    console.log('Language set to', language);
-}
-
-function setLearningLanguage(language) {
-    localStorage.setItem('learningLanguage', language);
-    console.log('Learning language set to', language);
-}
-
 initialise();
-changeFlag();
