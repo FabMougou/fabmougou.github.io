@@ -4,6 +4,8 @@ let knownLanguage = localStorage.getItem('knownLanguage');
 let learningLanguage = localStorage.getItem('learningLanguage');
 let scoreSpan = document.getElementById('score');
 let wordsLeftSpan = document.getElementById('words-left');
+let classicModal = document.getElementById('classic-modal');
+let finalScore = document.getElementById('final-score');
 console.log('This is the known language:', knownLanguage);
 console.log('This is the learning language:', learningLanguage);
 let learningWord;
@@ -74,6 +76,9 @@ function getWord() {
         knownWord = combinedWordList[count][2];
         knownBox.value = '';
         count++;
+    } else {
+        finalScore.innerText = `${correct}/${combinedWordList.length}`;
+        classicModal.showModal();
     }
 }
 

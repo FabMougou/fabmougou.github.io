@@ -1,8 +1,20 @@
 html *
 {
-    font-family: "Rubik Mono One", monospace;}
+    font-family: "Rubik Mono One", monospace;
+}
+
 body {
     overflow: hidden;
+    background-color: #DBD7D2;
+}
+
+h1, h2 {
+    color: #08415C;
+}
+
+h1 {
+    font-size: 80px;
+    font-weight: bold;
 }
 
 .icon {
@@ -200,6 +212,29 @@ input[type="range"]::-webkit-slider-thumb {
     color: #08415C;
 }
 
+.finish-modal {
+    display: block; /* Ensure the dialog is displayed */
+    position: absolute;
+    margin: auto;
+    width: 75%;
+    height: 75%;
+    background-color: #DBD7D2;
+    border:0;
+    border-radius: 15px;
+    box-shadow: inset 5px 5px 0px rgba(255, 184, 184, 0.347), /* White shadow inside with gap */
+        6px 9px 0px #08415C; /* Black shadow outside */
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+}
 
 
 @media (max-width: 600px) {
