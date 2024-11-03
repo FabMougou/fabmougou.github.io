@@ -40,6 +40,11 @@ h1 {
 .logo {
     height: 150px;
     width: auto;
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1);
 }
 
 .menu-button {
@@ -88,6 +93,7 @@ h1 {
 
 .top-row {
     position: absolute;
+    margin-top:10px;
 }
 
 .difficulty-selector {
