@@ -2,38 +2,20 @@ let knownBox = document.getElementById('known-box');
 let learningBox = document.getElementById('learning-box');
 let knownLanguage = localStorage.getItem('knownLanguage');
 let learningLanguage = localStorage.getItem('learningLanguage');
-let scoreSpan = document.getElementById('score');
-let wordsLeftSpan = document.getElementById('words-left');
 console.log('This is the known language:', knownLanguage);
 console.log('This is the learning language:', learningLanguage);
 let learningWord;
 let knownWord;
 let knownWordList = [];
 let learningWordList = [];
-let combinedWordList = [];
 
-
-let count = 0;
-let correct = 0;
 
 document.getElementById('learning-flag').src = `assets/${learningLanguage}_flag.svg`;
 document.getElementById('known-flag').src = `assets/${knownLanguage}_flag.svg`;
 
 async function initialize() {
     await loadWords();
-
-    for (let i = 0; i < localStorage.getItem('difficulty'); i++) {
-        combinedWordList.push([knownWordList[i][0], learningWordList[i][1], knownWordList[i][1]]);
-    }
-
-    combinedWordList.sort(() => Math.random() - 0.5);
-
-    scoreSpan.innerText = `0/${combinedWordList.length}`;
-    wordsLeftSpan.innerText = `${combinedWordList.length} words left`;
-
-    getWord();
-
-
+    getRandomWord();
 }
 
 initialize();
@@ -67,23 +49,18 @@ async function loadWords() {
     ]);
 }
 
-function getWord() {
-    if (count < combinedWordList.length) {
-        learningWord = combinedWordList[count][1];
-        learningBox.value = learningWord;
-        knownWord = combinedWordList[count][2];
-        knownBox.value = '';
-        count++;
-    }
+function getRandomWord() {
+    let randomIndex = Math.floor(Math.random() * localStorage.getItem('difficulty'));
+    console.log('Random index:', randomIndex);
+    learningWord = learningWordList[randomIndex][1];
+    learningBox.value = learningWord;
+    knownWord = knownWordList[randomIndex][1];
+    knownBox.value = '';
 }
 
 function checkKnownWord() {
     let userAnswer = knownBox.value.toLowerCase();
     if (userAnswer === knownWord) {
-        wordsLeftSpan.innerText = `${combinedWordList.length - count} words left`;
-        correct++;
-        console.log('correct', correct);
-        scoreSpan.innerText = `${correct}/${combinedWordList.length}`;
         knownBox.style.backgroundColor = 'lightgreen';
         knownBox.disabled = true;
 
@@ -91,20 +68,23 @@ function checkKnownWord() {
             knownBox.value = '';
             knownBox.style.backgroundColor = 'white';
             knownBox.disabled = false;
-            getWord();
+            getRandomWord();
         }, 1000);
     }
 }
 
+function delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
+}
+
 function skipWord() {
-    wordsLeftSpan.innerText = `${combinedWordList.length - count} words left`;
     knownBox.value = knownWord;
     knownBox.style.backgroundColor = '#f9747f';
     knownBox.disabled = true;
     setTimeout(() => {
         knownBox.style.backgroundColor = 'white';
         knownBox.disabled = false;
-        getWord();
+        getRandomWord();
     }, 2000);
 }
 
