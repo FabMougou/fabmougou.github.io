@@ -1,6 +1,10 @@
+html *
+{
+    font-family: "Rubik Mono One", monospace;}
 body {
     overflow: hidden;
 }
+
 .icon {
     height: 50px;
     width: auto;
@@ -21,10 +25,16 @@ body {
     outline: none;
 }
 
+.logo {
+    height: 150px;
+    width: auto;
+}
+
 .menu-button {
     width:300px;
     height: 60px;
     font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: white;
     background-color: #CC2936;
     border:0px;
