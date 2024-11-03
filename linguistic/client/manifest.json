@@ -1,0 +1,22 @@
+{
+    "name": "Lingual",
+    "short_name": "Lingual",
+    "description": "A language learning app",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#DBD7D2",
+    "theme_color": "#DBD7D2",
+    "icons": [
+      {
+        "src": "assets/french_flag.svg",
+        "sizes": "192x192",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "assets/french_flag.svg",
+        "sizes": "512x512",
+        "type": "image/svg+xml"
+      }
+    ],
+    "orientation": "portrait"
+  }

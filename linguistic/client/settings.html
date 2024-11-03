@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="icon" href="french_flag.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="french_flag.svg">
+    <title>Lingual</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json" />
+</head>
+<body style="background-color: #DBD7D2;">
+
+    <div id="content">
+        <div class="row top-row">
+            <div class="col m-3">
+                <button class="icon-button" title="back" onclick="window.location.href='index.html'">
+                    <img class="icon" src="assets/back_icon.svg" alt="back">
+                </button>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="container center-container">
+                <!-- First Row -->
+                <div class="row">
+                    <div class="difficulty-selector text-center">
+                        <label for="difficulty-slider" class="form-label difficulty-label">difficulty</label>
+                        <input type="range" class="form-range blue" id="difficulty-slider" min="100" max="1000" value="500" step="100" oninput="setDifficulty()">
+                        <label for="difficulty-slider" id="difficulty-label" class="form-label font"></label>
+                    </div>
+                </div>
+        
+                <!-- Second Row -->
+                <div class="row my-3">                
+                    <div class="col text-center my-5 p-5">
+                        <div class="row center my-3">
+                            <img id="learning-flag-settings"class="flag" alt="Learning flag">
+                        </div>
+                        <div class="dropdown">
+                            <button class="shadowed dropdown-toggle menu-button" style="font-size:30px;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                learning language
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li>
+                                    <button class="dropdown-item settings-button my-1" onclick="setLearningLanguage('english'), changeFlag()" href="#">English</button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item settings-button my-1" onclick="setLearningLanguage('french'), changeFlag()">French</button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item settings-button my-1" onclick="setLearningLanguage('irish'), changeFlag()">Irish</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col text-center my-5 p-5">
+                        <div class="row center my-3">
+                            <img id="known-flag-settings" class="flag" alt="Known flag">
+                        </div>
+                        <div class="dropdown">
+                            <button class="blue-button shadowed dropdown-toggle menu-button" style="font-size:30px;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                known language
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li>
+                                    <button class="dropdown-item settings-button my-1" onclick="setKnownLanguage('french'), changeFlag()" href="#">French</button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item settings-button my-1" onclick="setKnownLanguage('irish'), changeFlag()">Irish</button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item settings-button my-1" onclick="setKnownLanguage('english'), changeFlag()">English</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+<script src="global.js"></script>
+<script src="settings.js"></script>
+</body>
+</html>
