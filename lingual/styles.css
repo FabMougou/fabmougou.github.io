@@ -219,7 +219,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .finish-modal {
-    display: block; /* Ensure the dialog is displayed */
+    display: none; /* Ensure the dialog is displayed */
     position: absolute;
     margin: auto;
     width: 75%;
