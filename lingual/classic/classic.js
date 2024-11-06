@@ -17,8 +17,8 @@ let combinedWordList = [];
 let count = 0;
 let correct = 0;
 
-document.getElementById('learning-flag').src = `assets/${learningLanguage}_flag.svg`;
-document.getElementById('known-flag').src = `assets/${knownLanguage}_flag.svg`;
+document.getElementById('learning-flag').src = `../assets/${learningLanguage}_flag.svg`;
+document.getElementById('known-flag').src = `../assets/${knownLanguage}_flag.svg`;
 
 async function initialize() {
     await loadWords();
@@ -40,7 +40,7 @@ async function initialize() {
 initialize();
 async function loadWords() {
     await Promise.all([
-        fetch(`word_lists/common_${knownLanguage}_words.csv`) 
+        fetch(`../word_lists/common_${knownLanguage}_words.csv`) 
         .then(response => response.text())
         .then(data => {
             Papa.parse(data, {
@@ -52,7 +52,7 @@ async function loadWords() {
         })
         .catch(error => console.error('Error loading CSV:', error)),
 
-        fetch(`word_lists/common_${learningLanguage}_words.csv`) 
+        fetch(`../word_lists/common_${learningLanguage}_words.csv`) 
         .then(response => response.text())
         .then(data => {
             Papa.parse(data, {

@@ -18,8 +18,8 @@ function changeFlag() {
     let knownLanguage = localStorage.getItem('knownLanguage');
     let learningLanguage = localStorage.getItem('learningLanguage');
 
-    knownFlag.src = `assets/${knownLanguage}_flag.svg`;
-    learningFlag.src = `assets/${learningLanguage}_flag.svg`;
+    knownFlag.src = `../assets/${knownLanguage}_flag.svg`;
+    learningFlag.src = `../assets/${learningLanguage}_flag.svg`;
 }
 
 function setDifficulty() {
