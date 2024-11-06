@@ -4,6 +4,7 @@ let knownLanguage = localStorage.getItem('knownLanguage');
 let learningLanguage = localStorage.getItem('learningLanguage');
 let scoreSpan = document.getElementById('score');
 let timedModal = document.getElementById('timed-modal');
+timedModal.close();
 let finalScore = document.getElementById('final-score');
 
 

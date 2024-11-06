@@ -5,6 +5,7 @@ let learningLanguage = localStorage.getItem('learningLanguage');
 let scoreSpan = document.getElementById('score');
 let wordsLeftSpan = document.getElementById('words-left');
 let classicModal = document.getElementById('classic-modal');
+classicModal.close()
 let finalScore = document.getElementById('final-score');
 let learningWord;
 let knownWord;
