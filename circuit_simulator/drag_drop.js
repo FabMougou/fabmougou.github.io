@@ -179,22 +179,29 @@ function mouseReleased() {
     }
     lining = null;
     image(bg, 0, 0);
-    
+    for (let node of nodes) {
+        node.show();
+    }
 }
 
 let line_end;
 function mouseDragged() {
-    image(bg, 0, 0);
-    line_end = {x: mouseX, y: mouseY};
-
     if (moving){
         if (rack.includes(moving)){
          rack.splice(rack.indexOf(moving), 1)
         }
         moving.move(mouseX + offset.x, mouseY + offset.y);
+        image(bg, 0, 0);
+        for (let node of nodes) {
+            node.show();
+        }
 
     } else if (lining) {
-        line(lining.x, lining.y, line_end.x, line_end.y);
+        image(bg, 0, 0);
+        for (let node of nodes) {
+            node.show();
+        }
+        line(lining.x, lining.y, mouseX, mouseY);
     }
 }
 
