@@ -1,42 +1,94 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.app-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: 
+    "top-left    top-center    top-right"
+    "middle-left middle-center middle-right"
+    "bottom-left bottom-center bottom-right";
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.app-container.hidden {
+  opacity: 0;
+  visibility: hidden;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.app-container.fade-in {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Grid area classes - act as anchor points */
+.top-left, .top-center, .top-right,
+.middle-left, .middle-center, .middle-right,
+.bottom-left, .bottom-center, .bottom-right {
+  position: relative;
+  overflow: visible;
+  /* Debug: add visible borders temporarily */
+  border: 2px solid rgba(255, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Assign grid areas explicitly */
+.top-left { grid-area: top-left; }
+.top-center { grid-area: top-center; }
+.top-right { grid-area: top-right; }
+.middle-left { grid-area: middle-left; }
+.middle-center { grid-area: middle-center; }
+.middle-right { grid-area: middle-right; }
+.bottom-left { grid-area: bottom-left; }
+.bottom-center { grid-area: bottom-center; }
+.bottom-right { grid-area: bottom-right; }
+
+/* Component containers */
+.component-container {
+  position: relative;
+  z-index: 10;
+  width: 200%;
+  height: 200%;
+  background-color: transparent;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Debug border */
+  /* border: 2px solid rgba(0, 255, 0, 0.5); */
+}
+
+/* Background water layer spans entire grid */
+.water-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 1;
+  animation: fadeInGrid 0.2s ease-in-out;
+}
+
+@keyframes fadeInGrid {
+  0% {
+    opacity: 0;
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    opacity: 1;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+/* Ensure ASCII text is visible and can overflow */
+.component-container > * {
+  position: relative;
+  z-index: 11;
+  overflow: visible;
 }
