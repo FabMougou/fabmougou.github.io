@@ -1,7 +1,7 @@
 import React from 'react';
 import Sketch from 'react-p5';
 
-const ColourGrid = ({ 
+const ASCIIWave = ({ 
   numCells = 500, 
   cellSize = 10, 
   canvasWidth = 400, 
@@ -105,122 +105,20 @@ const ColourGrid = ({
     return (n - Math.floor(n));
   };
 
-  // Function to calculate gradient colors with interesting variations
-  const getGradientColor = (p5, intensity = 1.0, depth = 0, row = 0, col = 0, cellSeed = 0) => {
-    // Calculate angle from center to mouse (matching ASCIIText hue rotation)
-    const centerX = canvasWidth / 2;
-    const centerY = canvasHeight / 2;
-    const dx = p5.mouseX - centerX;
-    const dy = p5.mouseY - centerY;
-    const targetAngle = Math.atan2(dy, dx) * (180 / Math.PI);
+  const getWaveColor = (p5, intensity = 1.0) => {
+    // Use the waterColor prop directly
+    const [r, g, b] = waterColor;
     
-    // Smooth angle transition (matching the 0.075 lerp in ASCIIText)
-    mouseAngle += (targetAngle - mouseAngle) * 0.075;
+    // Apply intensity (makes it darker when intensity is lower)
+    const adjustedR = r * intensity;
+    const adjustedG = g * intensity;
+    const adjustedB = b * intensity;
     
-    // Convert angle to 0-1 range for gradient calculation
-    const normalizedAngle = (mouseAngle + 180) / 360;
-    
-    // Create the radial gradient colors (matching ASCIIText CSS gradient)
-    let r, g, b;
-    
-    if (normalizedAngle < 0.5) {
-      const t = normalizedAngle * 2;
-      r = p5.lerp(255, 252, t);
-      g = p5.lerp(97, 152, t);
-      b = p5.lerp(136, 103, t);
-    } else {
-      const t = (normalizedAngle - 0.5) * 2;
-      r = p5.lerp(252, 255, t);
-      g = p5.lerp(152, 216, t);
-      b = p5.lerp(103, 102, t);
-    }
-
-    // Apply color variations based on position and randomness
-    if (colorVariation > 0) {
-      // Position-based noise
-      const noiseX = row * 0.1 + colorSeed;
-      const noiseY = col * 0.1 + colorSeed;
-      const colorNoiseR = (noise2D(noiseX, noiseY, 0) - 0.5) * colorNoise;
-      const colorNoiseG = (noise2D(noiseX, noiseY, 100) - 0.5) * colorNoise;
-      const colorNoiseB = (noise2D(noiseX, noiseY, 200) - 0.5) * colorNoise;
-      
-      // Random hue shifting
-      const hueShiftAmount = (cellSeed - 0.5) * hueShift * 360;
-      const hueRad = hueShiftAmount * Math.PI / 180;
-      const cosHue = Math.cos(hueRad);
-      const sinHue = Math.sin(hueRad);
-      
-      // Apply hue rotation matrix (simplified)
-      const tempR = r;
-      r = r * (0.299 + 0.701 * cosHue + 0.168 * sinHue) + 
-          g * (0.587 - 0.587 * cosHue + 0.330 * sinHue) + 
-          b * (0.114 - 0.114 * cosHue - 0.497 * sinHue);
-      g = tempR * (0.299 - 0.299 * cosHue - 0.328 * sinHue) + 
-          g * (0.587 + 0.413 * cosHue + 0.035 * sinHue) + 
-          b * (0.114 - 0.114 * cosHue + 0.292 * sinHue);
-      b = tempR * (0.299 - 0.3 * cosHue + 1.25 * sinHue) + 
-          g * (0.587 - 0.588 * cosHue - 1.05 * sinHue) + 
-          b * (0.114 + 0.886 * cosHue - 0.203 * sinHue);
-      
-      // Add color noise
-      r += colorNoiseR * 255 * colorVariation;
-      g += colorNoiseG * 255 * colorVariation;
-      b += colorNoiseB * 255 * colorVariation;
-      
-      // Random saturation variation
-      const satVariation = (cellSeed - 0.5) * saturationVariation;
-      const gray = (r + g + b) / 3;
-      r = p5.lerp(gray, r, 1 + satVariation);
-      g = p5.lerp(gray, g, 1 + satVariation);
-      b = p5.lerp(gray, b, 1 + satVariation);
-      
-      // Random brightness variation
-      const brightVariation = 1 + (cellSeed - 0.5) * brightnessVariation;
-      r *= brightVariation;
-      g *= brightVariation;
-      b *= brightVariation;
-    }
-    
-    // REVERSED: Make deeper areas brighter and whiter, surface areas get gradient colors
-    if (depth === 0) {
-      // Surface - use gradient colors as-is (least white)
-      r *= 0.8;
-      g *= 0.8;
-      b *= 0.8;
-    } else if (depth <= 2) {
-      // Near interior - start adding white
-      const whiteBoost = depth * 40;
-      const brightnessBoost = 1.0 + (depth * 0.3);
-      r = Math.min(255, r * brightnessBoost + whiteBoost);
-      g = Math.min(255, g * brightnessBoost + whiteBoost);
-      b = Math.min(255, b * brightnessBoost + whiteBoost);
-    } else if (depth <= 4) {
-      // Interior - very bright and white
-      const whiteBoost = 60 + (depth * 20);
-      const brightnessBoost = 1.5 + (depth * 0.2);
-      r = Math.min(255, r * brightnessBoost + whiteBoost);
-      g = Math.min(255, g * brightnessBoost + whiteBoost);
-      b = Math.min(255, b * brightnessBoost + whiteBoost);
-    } else {
-      // Deep interior - extremely bright and white
-      r = Math.min(255, r * 2.0 + 120);
-      g = Math.min(255, g * 2.0 + 120);
-      b = Math.min(255, b * 2.0 + 120);
-    }
-    
-    // Apply intensity with higher minimum brightness
-    const minBrightness = 0.6;
-    const adjustedIntensity = minBrightness + (intensity * (1.0 - minBrightness));
-    r *= adjustedIntensity;
-    g *= adjustedIntensity;
-    b *= adjustedIntensity;
-    
-    // Ensure colors are within valid range
-    r = Math.max(0, Math.min(255, r));
-    g = Math.max(0, Math.min(255, g));
-    b = Math.max(0, Math.min(255, b));
-    
-    return [Math.floor(r), Math.floor(g), Math.floor(b)];
+    return [
+      Math.max(0, Math.min(255, adjustedR)),
+      Math.max(0, Math.min(255, adjustedG)),
+      Math.max(0, Math.min(255, adjustedB))
+    ];
   };
 
   const updateParticles = (p5) => {
@@ -250,7 +148,6 @@ const ColourGrid = ({
         grid[row][col].filled = false;
         grid[row][col].intensity = 0;
         grid[row][col].depthFromSurface = 0;
-        // Keep the existing colorSeed
       }
     }
     waterHeights.fill(0);
@@ -326,10 +223,11 @@ const ColourGrid = ({
     updateParticles(p5);
     
     if (useAscii) {
-      // Draw ASCII characters with gradient colors
+      // Draw ASCII characters with simple black color
       p5.textFont(asciiFont);
       p5.textSize(asciiFontSize);
       p5.textAlign(p5.LEFT, p5.TOP);
+      p5.textStyle(p5.BOLD);
       
       const charWidth = p5.textWidth('M');
       const charHeight = asciiFontSize;
@@ -338,16 +236,14 @@ const ColourGrid = ({
         for (let col = 0; col < gridWidth; col++) {
           if (grid[row][col].filled) {
             const intensity = grid[row][col].intensity;
-            const depth = grid[row][col].depthFromSurface;
-            const cellSeed = grid[row][col].colorSeed;
             
             // Choose ASCII character based on intensity
             const adjustedIntensity = Math.pow(intensity, 0.7);
             const charIndex = Math.floor(adjustedIntensity * (asciiCharset.length - 1));
             const char = asciiCharset[Math.min(charIndex, asciiCharset.length - 1)];
             
-            // Get gradient color with variations
-            const [r, g, b] = getGradientColor(p5, intensity, depth, row, col, cellSeed);
+            // Get simple black color
+            const [r, g, b] = getWaveColor(p5, intensity);
             const alpha = Math.floor(Math.min(255, intensity * 300));
             
             p5.fill(r, g, b, alpha);
@@ -361,18 +257,16 @@ const ColourGrid = ({
         }
       }
     } else {
-      // Draw regular colored rectangles with gradient colors
+      // Draw regular colored rectangles with simple black color
       p5.noStroke();
       
       for (let row = 0; row < gridHeight; row++) {
         for (let col = 0; col < gridWidth; col++) {
           if (grid[row][col].filled) {
             const intensity = grid[row][col].intensity;
-            const depth = grid[row][col].depthFromSurface;
-            const cellSeed = grid[row][col].colorSeed;
             
-            // Get gradient color with variations
-            const [r, g, b] = getGradientColor(p5, intensity, depth, row, col, cellSeed);
+            // Get simple black color
+            const [r, g, b] = getWaveColor(p5, intensity);
             const alpha = Math.floor(Math.min(255, intensity * 300));
             
             p5.fill(r, g, b, alpha);
@@ -398,13 +292,12 @@ const ColourGrid = ({
     }
   };
   
-
   const mouseClicked = (p5) => {
     if (clickRedistribution) {
       particles.forEach(particle => {
         particle.col = Math.floor(Math.random() * gridWidth);
         particle.velocity = 0;
-        particle.colorSeed = Math.random(); // New color seed on redistribution
+        particle.colorSeed = Math.random();
       });
       
       // Regenerate color seeds for grid cells
@@ -419,4 +312,4 @@ const ColourGrid = ({
   return <Sketch setup={setup} draw={draw} mouseClicked={mouseClicked} />;
 };
 
-export default ColourGrid;
+export default ASCIIWave;

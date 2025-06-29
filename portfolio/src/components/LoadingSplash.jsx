@@ -17,18 +17,18 @@ const LoadingSplash = ({ onLoadingComplete }) => {
     // Start hiding welcome text
     const hideWelcomeTimer = setTimeout(() => {
       setHideWelcome(true)
-    }, 2400)
+    }, 2400) //2400
 
     // Show the rest after welcome is hidden
     const restTimer = setTimeout(() => {
       setShowRestOfText(true)
-    }, 2900)
+    }, 2900) //2900
 
     // Complete loading after all animations
     const completeTimer = setTimeout(() => {
       setIsComplete(true)
       setTimeout(() => onLoadingComplete(), 500)
-    }, 6000)
+    }, 6000) //6000
 
     return () => {
       clearTimeout(welcomeTimer)

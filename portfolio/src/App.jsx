@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react'
-import { ASCIIText, ColourGrid, LoadingSplash } from './components'
+import { useState, useEffect, useMemo } from 'react'
+import { ASCIIWave, LoadingSplash } from './components'
+import ContentRenderer from './components/ContentRenderer'
 import './App.css'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
-  const [showGrid, setShowGrid] = useState(false)
+  const [showContent, setShowContent] = useState(false) // New state for content visibility
+  const [activeSection, setActiveSection] = useState('resume')
   const [windowDimensions, setWindowDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight
@@ -25,96 +27,89 @@ function App() {
   const handleLoadingComplete = () => {
     setIsLoading(false)
     setTimeout(() => {
-      setShowGrid(true)
+      setShowContent(true) // Show everything together
     }, 500)
   }
+
+  const handleNavClick = (section) => {
+    setActiveSection(section)
+  }
+
+  // Memoize the ASCIIWave component with NO dependencies so it never recreates
+  const memoizedASCIIWave = useMemo(() => (
+    <ASCIIWave 
+      key="persistent-water-background"
+      numCells={800}
+      cellSize={10}
+      canvasWidth={windowDimensions.width}
+      canvasHeight={windowDimensions.height}
+      springForce={0.15}
+      damping={0.6}
+      waveSpread={20}
+      minIntensity={0.05}
+      maxWaveHeight={0.8}
+      waterColor={[0,0,0]}
+      backgroundColor={255}
+      gravity={0.03}
+      turbulence={0.5}
+      mouseInfluence={true}
+      clickRedistribution={true}
+      showMouseIndicator={false}
+      colorVariation={0}
+      hueShift={0}
+      saturationVariation={0}
+      brightnessVariation={0}
+      colorNoise={0}
+    />
+  ), []) // Empty dependency array - component never recreates
 
   return (
     <>
       {isLoading && <LoadingSplash onLoadingComplete={handleLoadingComplete} />}
       
-      <div className={`app-container ${isLoading ? 'hidden' : 'fade-in'}`}>
-        {/* Background water layer */}
-        {showGrid && (
+      <div className={`app-container ${!showContent ? 'hidden' : 'fade-in'}`}>
+        {/* Background water layer - This persists across all navigation */}
+        {showContent && (
           <div className="water-background">
-            <ColourGrid 
-              key="main-color-grid"
-              numCells={800}
-              cellSize={10}
-              canvasWidth={windowDimensions.width}
-              canvasHeight={windowDimensions.height}
-              springForce={0.15}
-              damping={0.6}
-              waveSpread={20}
-              minIntensity={0.05}
-              maxWaveHeight={0.8}
-              waterColor={[100, 200, 255]}
-              backgroundColor={0}
-              gravity={0.03}
-              turbulence={0.5}
-              mouseInfluence={true}
-              clickRedistribution={true}
-              showMouseIndicator={false}
-              colorVariation={0.4}
-              hueShift={0.15}
-              saturationVariation={0.25}
-              brightnessVariation={0.2}
-              colorNoise={0.18}
-            />
+            {memoizedASCIIWave}
           </div>
         )}
 
-        {/* Grid sections with ASCII text - removed size constraints */}
-        <div className="top-left">
-          <div className="component-container">
-            <ASCIIText 
-              text="Resume"
-              asciiFontSize={10}
-              textFontSize={20}
-              textColor="#fdf9f3"
-              planeBaseHeight={8}
-              enableWaves={true}
-              waveIntensity={0.7}
-              waveSpeed={1.5}
-            />
-          </div>
-        </div>
+        {/* Navigation */}
+        <nav className="main-nav">
+          <button 
+            className={`nav-button ${activeSection === 'about' ? 'active' : ''}`}
+            onClick={() => handleNavClick('about')}
+          >
+            <h1>About</h1>
+          </button>
 
-        <div className="top-center">
-          <div className="component-container">
-            <ASCIIText 
-              text="Projects"
-              asciiFontSize={10}
-              textFontSize={20}
-              textColor="#fdf9f3"
-              planeBaseHeight={8}
-              enableWaves={true}
-              waveIntensity={0.7}
-              waveSpeed={1.5}
-            />
-          </div>
-        </div>
+          <button 
+            className={`nav-button ${activeSection === 'resume' ? 'active' : ''}`}
+            onClick={() => handleNavClick('resume')}
+          >
+            <h1>Resume</h1>
+          </button>
+          
+          <button 
+            className={`nav-button ${activeSection === 'projects' ? 'active' : ''}`}
+            onClick={() => handleNavClick('projects')}
+          >
+            <h1>Projects</h1>
+          </button>
+          
+          <button 
+            className={`nav-button ${activeSection === 'art' ? 'active' : ''}`}
+            onClick={() => handleNavClick('art')}
+          >
+            <h1>Art</h1>
+          </button>
+        </nav>
 
-        <div className="top-right">
-          <div className="component-container">
-            <ASCIIText 
-              text="Art"
-              asciiFontSize={10}
-              textFontSize={20}
-              textColor="#fdf9f3"
-              planeBaseHeight={8}
-              enableWaves={true}
-              waveIntensity={0.7}
-              waveSpeed={1.5}
-            />
-          </div>
-        </div>
-        <div className="middle-left"></div>
-        <div className="middle-center"></div>
-        <div className="middle-right"></div>
-        <div className="bottom-left"></div>
-        <div className="bottom-center"></div>
-        <div className="bottom-right"></div>
+        {/* Main content area - Content changes but water background persists */}
+        <main className="main-content">
+          <ContentRenderer activeSection={activeSection} />
+        </main>
       </div>
     </>
   )
