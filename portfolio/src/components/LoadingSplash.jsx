@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import DecryptedText from './DecryptedText'
-import './styles/LoadingSplash.css'
+import './styles/LoadingSplash.scss'
 
-const LoadingSplash = ({ onLoadingComplete }) => {
+const LoadingSplash = ({ onLoadingComplete, duration = 500 }) => {
   const [showWelcome, setShowWelcome] = useState(false)
   const [hideWelcome, setHideWelcome] = useState(false)
   const [showRestOfText, setShowRestOfText] = useState(false)
@@ -12,23 +12,23 @@ const LoadingSplash = ({ onLoadingComplete }) => {
     // Start with welcome text
     const welcomeTimer = setTimeout(() => {
       setShowWelcome(true)
-    }, 500)
+    }, duration)
 
     // Start hiding welcome text
     const hideWelcomeTimer = setTimeout(() => {
       setHideWelcome(true)
-    }, 2400) //2400
+    }, duration * 5) //2400
 
     // Show the rest after welcome is hidden
     const restTimer = setTimeout(() => {
       setShowRestOfText(true)
-    }, 2900) //2900
+    }, duration * 6) //2900
 
     // Complete loading after all animations
     const completeTimer = setTimeout(() => {
       setIsComplete(true)
       setTimeout(() => onLoadingComplete(), 500)
-    }, 6000) //6000
+    }, duration * 10) //6000
 
     return () => {
       clearTimeout(welcomeTimer)

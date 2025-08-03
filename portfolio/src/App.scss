@@ -1,0 +1,55 @@
+.app-container {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(10, 87, 48, 1);
+}
+
+.app-container.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.app-container.fade-in {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Background water layer */
+.water-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none; 
+  opacity: 1;
+  animation: fadeInGrid 0.2s ease-in-out;
+}
+
+/* Content area */
+.main-content {
+  flex: 1;
+  position: relative;
+  z-index: 5;
+  padding: 2rem;
+  padding-top: 220px; /* Make room for the card decks */
+  overflow-y: auto;
+}
+
+@keyframes fadeInGrid {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

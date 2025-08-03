@@ -1,16 +1,25 @@
 import { useState, useEffect, useMemo } from 'react'
-import { ASCIIWave, LoadingSplash } from './components'
+import { ASCIIWave, LoadingSplash, CardDeck } from './components'
 import ContentRenderer from './components/ContentRenderer'
-import './App.css'
+import './App.scss'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
-  const [showContent, setShowContent] = useState(false) // New state for content visibility
-  const [activeSection, setActiveSection] = useState('resume')
+  const [showContent, setShowContent] = useState(false)
+  const [activeSection, setActiveSection] = useState(null) // null means showing all decks
   const [windowDimensions, setWindowDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight
   })
+
+  // Define the sections and their corresponding card designs
+  const sections = [
+    { id: 'about', imageSrc: 'src/assets/card-back-about.png' },
+    { id: 'experience', imageSrc: 'src/assets/card-back-experience.png' },
+    { id: 'education', imageSrc: 'src/assets/card-back-education.png' },
+    { id: 'projects', imageSrc: 'src/assets/card-back-projects.png' },
+    { id: 'skills', imageSrc: 'src/assets/card-back-skills.png' }
+  ]
 
   useEffect(() => {
     const handleResize = () => {
@@ -27,15 +36,19 @@ function App() {
   const handleLoadingComplete = () => {
     setIsLoading(false)
     setTimeout(() => {
-      setShowContent(true) // Show everything together
+      setShowContent(true)
     }, 500)
   }
 
-  const handleNavClick = (section) => {
-    setActiveSection(section)
+  const handleDeckClick = (section) => {
+    if (activeSection == null || activeSection == section) {
+      setActiveSection(section)
+    } else {
+      setActiveSection(null)
+    }
   }
 
-  // Memoize the ASCIIWave component with NO dependencies so it never recreates
+  // Memoize the ASCIIWave component
   const memoizedASCIIWave = useMemo(() => (
     <ASCIIWave 
       key="persistent-water-background"
@@ -48,7 +61,7 @@ function App() {
       waveSpread={20}
       minIntensity={0.05}
       maxWaveHeight={0.8}
-      waterColor={[0,0,0]}
+      waterColor={[166,98,53]}
       backgroundColor={255}
       gravity={0.03}
       turbulence={0.5}
@@ -61,58 +74,56 @@ function App() {
       brightnessVariation={0}
       colorNoise={0}
     />
-  ), []) // Empty dependency array - component never recreates
+  ), [])
 
   return (
     <>
-      {isLoading && <LoadingSplash onLoadingComplete={handleLoadingComplete} />}
+      {isLoading && <LoadingSplash onLoadingComplete={handleLoadingComplete} duration={100} />}
       
       <div className={`app-container ${!showContent ? 'hidden' : 'fade-in'}`}>
-        {/* Background water layer - This persists across all navigation */}
+        {/* Background water layer */}
         {showContent && (
           <div className="water-background">
-            {memoizedASCIIWave}
+            {/* {memoizedASCIIWave} */}
           </div>
         )}
 
-        {/* Navigation */}
-        <nav className="main-nav">
-          <button 
-            className={`nav-button ${activeSection === 'about' ? 'active' : ''}`}
-            onClick={() => handleNavClick('about')}
-          >
-            <h1>About</h1>
-          </button>
+        {/* Card Deck Navigation */}
+        {showContent && (
+          <>
+            {sections.map((section, index) => {
+              let position = 'initial';
+              
+              if (activeSection === section.id) {
+                position = 'active';
+              } else if (activeSection && activeSection !== section.id) {
+                position = 'messy';
+              }
 
-          <button 
-            className={`nav-button ${activeSection === 'resume' ? 'active' : ''}`}
-            onClick={() => handleNavClick('resume')}
-          >
-            <h1>Resume</h1>
-          </button>
-          
-          <button 
-            className={`nav-button ${activeSection === 'projects' ? 'active' : ''}`}
-            onClick={() => handleNavClick('projects')}
-          >
-            <h1>Projects</h1>
-          </button>
-          
-          <button 
-            className={`nav-button ${activeSection === 'art' ? 'active' : ''}`}
-            onClick={() => handleNavClick('art')}
-          >
-            <h1>Art</h1>
-          </button>
-        </nav>
+              return (
+                <CardDeck
+                  key={section.id}
+                  numCards={10}
+                  numDecks={sections.length}
+                  imageSrc={section.imageSrc}
+                  position={position}
+                  index={index}
+                  section={section.id}
+                  isActive={activeSection === section.id}
+                  onClick={handleDeckClick}
+                />
+              );
+            })}
+          </>
+        )}
 
-        {/* Main content area - Content changes but water background persists */}
+        {/* Main content area */}
         <main className="main-content">
-          <ContentRenderer activeSection={activeSection} />
+          {/* {activeSection && <ContentRenderer activeSection={activeSection} />} */}
         </main>
       </div>
     </>
   )
 }
 
-export default App
+export default App;
