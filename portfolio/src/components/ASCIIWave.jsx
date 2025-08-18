@@ -18,8 +18,8 @@ const ASCIIWave = ({
   showMouseIndicator = false, 
   // ASCII parameters
   useAscii = true,
-  asciiCharset = " o",
-  // asciiCharset = " .'`^\",:;Il!i~+_-?][}{1)(|/tfjrxnuvczXYUJCLQ0OZmwqpdbkhaos#MW&8%B@$",
+  // asciiCharset = " o",
+  asciiCharset = " .'`^\",:;Il!i~+_-?][}{1)(|/tfjrxnuvczXYUJCLQ0OZmwqpdbkhaos#MW&8%B@$",
   asciiFont = "Courier New",
   asciiFontSize = 12,
   asciiColor = [100, 200, 255],

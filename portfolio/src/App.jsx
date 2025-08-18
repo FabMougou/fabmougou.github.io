@@ -1,25 +1,61 @@
 import { useState, useEffect, useMemo } from 'react'
 import { ASCIIWave, LoadingSplash, CardDeck } from './components'
+import LayedOutCards from './components/LayedOutCards'
 import ContentRenderer from './components/ContentRenderer'
 import './App.scss'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
   const [showContent, setShowContent] = useState(false)
-  const [activeSection, setActiveSection] = useState(null) // null means showing all decks
+  const [activeSection, setActiveSection] = useState(null)
   const [windowDimensions, setWindowDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight
   })
 
   // Define the sections and their corresponding card designs
-  const sections = [
-    { id: 'about', imageSrc: 'src/assets/card-back-about.png' },
-    { id: 'experience', imageSrc: 'src/assets/card-back-experience.png' },
-    { id: 'education', imageSrc: 'src/assets/card-back-education.png' },
-    { id: 'projects', imageSrc: 'src/assets/card-back-projects.png' },
-    { id: 'skills', imageSrc: 'src/assets/card-back-skills.png' }
-  ]
+  const sections = {
+    about: {
+      imageSrc: 'src/assets/card-back-about.png',
+      cards: [
+        { name: 'Card 1', backImage: 'src/assets/card-back-about.png', frontImage: 'src/assets/cards/card-back-red.png' },
+        { name: 'Card 2', backImage: 'src/assets/card-back-about.png', frontImage: 'src/assets/cards/card-back-red.png' },
+        { name: 'Card 3', backImage: 'src/assets/card-back-about.png', frontImage: 'src/assets/cards/card-back-red.png' }
+      ]
+    },
+    experience: { 
+      imageSrc: 'src/assets/card-back-experience.png',
+      cards: [
+        { name: 'Card 1', backImage: 'src/assets/card-back-about.png', frontImage: 'src/assets/cards/card-back-red.png' },
+        { name: 'Card 2', backImage: 'src/assets/card-back-about.png', frontImage: 'src/assets/cards/card-back-red.png' },
+        { name: 'Card 3', backImage: 'src/assets/card-back-about.png', frontImage: 'src/assets/cards/card-back-red' }
+      ]
+    },
+    education: {
+      imageSrc: 'src/assets/card-back-education.png', 
+      cards: [
+        { name: 'Card 1', backImage: 'src/assets/card-back-about.png', frontImage: 'src/assets/cards/card-back-red.png' },
+        { name: 'Card 2', backImage: 'src/assets/card-back-about.png', frontImage: 'src/assets/cards/card-back-red.png' },
+        { name: 'Card 3', backImage: 'src/assets/card-back-about.png', frontImage: 'src/assets/cards/card-back-red' }
+      ]
+    },
+    projects: {
+      imageSrc: 'src/assets/card-back-projects.png',
+      cards: [
+        { name: 'Card 1', backImage: 'src/assets/card-back-about.png', frontImage: 'src/assets/cards/card-back-red.png' },
+        { name: 'Card 2', backImage: 'src/assets/card-back-about.png', frontImage: 'src/assets/cards/card-back-red.png' },
+        { name: 'Card 3', backImage: 'src/assets/card-back-about.png', frontImage: 'src/assets/cards/card-back-red' }
+      ]
+    },
+    skills: {
+      imageSrc: 'src/assets/card-back-skills.png',
+      cards: [
+        { name: 'Card 1', backImage: 'src/assets/card-back-about.png', frontImage: 'src/assets/cards/card-back-red.png' },
+        { name: 'Card 2', backImage: 'src/assets/card-back-about.png', frontImage: 'src/assets/cards/card-back-red.png' },
+        { name: 'Card 3', backImage: 'src/assets/card-back-about.png', frontImage: 'src/assets/cards/card-back-red' }
+      ]
+    }
+  }
 
   useEffect(() => {
     const handleResize = () => {
@@ -48,34 +84,6 @@ function App() {
     }
   }
 
-  // Memoize the ASCIIWave component
-  const memoizedASCIIWave = useMemo(() => (
-    <ASCIIWave 
-      key="persistent-water-background"
-      numCells={800}
-      cellSize={10}
-      canvasWidth={windowDimensions.width}
-      canvasHeight={windowDimensions.height}
-      springForce={0.15}
-      damping={0.6}
-      waveSpread={20}
-      minIntensity={0.05}
-      maxWaveHeight={0.8}
-      waterColor={[166,98,53]}
-      backgroundColor={255}
-      gravity={0.03}
-      turbulence={0.5}
-      mouseInfluence={true}
-      clickRedistribution={true}
-      showMouseIndicator={false}
-      colorVariation={0}
-      hueShift={0}
-      saturationVariation={0}
-      brightnessVariation={0}
-      colorNoise={0}
-    />
-  ), [])
-
   return (
     <>
       {isLoading && <LoadingSplash onLoadingComplete={handleLoadingComplete} duration={100} />}
@@ -91,7 +99,31 @@ function App() {
         {/* Card Deck Navigation */}
         {showContent && (
           <>
-            {sections.map((section, index) => {
+            {Object.keys(sections).map((section, index) => {
+              console.log(sections[section].imageSrc)
+              let position = 'initial';
+              
+              if (activeSection === section) {
+                position = 'active';
+              } else if (activeSection && activeSection !== section) {
+                position = 'messy';
+              }
+
+              return (
+                <CardDeck
+                  key={index}
+                  numCards={10}
+                  numDecks={Object.keys(sections).length}
+                  imageSrc={sections[section].imageSrc}
+                  position={position}
+                  index={index}
+                  section={section}
+                  isActive={activeSection === section}
+                  onClick={handleDeckClick}
+                />
+              );
+            })}
+            {/* {sections.map((section, index) => {
               let position = 'initial';
               
               if (activeSection === section.id) {
@@ -113,14 +145,15 @@ function App() {
                   onClick={handleDeckClick}
                 />
               );
-            })}
+            })} */}
+
+            <LayedOutCards 
+              section={activeSection}
+              isActive={!!activeSection}
+              cards={activeSection ? sections[activeSection].cards : []}
+            />
           </>
         )}
-
-        {/* Main content area */}
-        <main className="main-content">
-          {/* {activeSection && <ContentRenderer activeSection={activeSection} />} */}
-        </main>
       </div>
     </>
   )

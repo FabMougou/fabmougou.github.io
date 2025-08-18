@@ -69,7 +69,6 @@ const CardDeck = ({
       style={getPositionStyles()}
       onClick={() => onClick && onClick(section)}
     >
-      {section}
       {Array.from({ length: numCards }, (_, cardIndex) => {
         const cardOffsetTop = (cardIndex * Math.random() * 3);
         const cardOffsetLeft = (cardIndex * Math.random() * 3);

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Card Dealing Animation</title>
+  <style>
+    body {
+      margin: 0;
+      background: darkgreen;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* The deck on the left */
+    .deck {
+      position: absolute;
+      top: 100px;
+      left: 40px;
+      width: 80px;
+      height: 120px;
+    }
+
+    .deck-card {
+      position: absolute;
+      width: 80px;
+      height: 120px;
+      background: repeating-linear-gradient(
+        45deg,
+        crimson,
+        crimson 10px,
+        #ffffff 10px,
+        #ffffff 20px
+      );
+      border-radius: 8px;
+      border: 2px solid #222;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .deck-card:nth-child(1) { top: 0px; left: 0px; z-index: 1; }
+    .deck-card:nth-child(2) { top: 3px; left: 3px; z-index: 2; }
+    .deck-card:nth-child(3) { top: 6px; left: 6px; z-index: 3; }
+    .deck-card:nth-child(4) { top: 9px; left: 9px; z-index: 4; }
+
+    /* Table for dealt cards */
+    .table {
+      position: absolute;
+      top: 100px;
+      left: 40px; /* Cards will animate from this left point */
+    }
+
+    .card {
+      position: absolute;
+      width: 80px;
+      height: 120px;
+      background: repeating-linear-gradient(
+        45deg,
+        crimson,
+        crimson 10px,
+        #ffffff 10px,
+        #ffffff 20px
+      );
+      border-radius: 8px;
+      border: 2px solid #222;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      animation: deal 0.6s forwards ease-out;
+      animation-delay: calc(var(--i) * 0.4s);
+    }
+
+    @keyframes deal {
+      to {
+        transform: translateX(calc(150px + var(--i) * 100px));
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Deck stack -->
+  <div class="deck">
+    <div class="deck-card"></div>
+    <div class="deck-card"></div>
+    <div class="deck-card"></div>
+    <div class="deck-card"></div>
+  </div>
+
+  <!-- Cards being dealt -->
+  <div class="table">
+    <div class="card" style="--i:0;"></div>
+    <div class="card" style="--i:1;"></div>
+    <div class="card" style="--i:2;"></div>
+    <div class="card" style="--i:3;"></div>
+    <div class="card" style="--i:4;"></div>
+  </div>
+
+</body>
+</html>
