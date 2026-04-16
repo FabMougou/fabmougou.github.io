@@ -10,5 +10,5 @@ Bit-level pixel operations and designated run modes prioritising either speed or
 ![Run mode Comparisons](assets/libFilmMaster2000/performance-graphs.png)
 
 **Blur**
-![Blur function](assets/libFilmMaster2000/BLURRED-M.mp4)
+![Blur function](assets/libFilmMaster2000/BLURRED-M.gif)
 
